@@ -21,7 +21,7 @@ export async function getContactById(contactId) {
 export async function removeContact(contactId) {
   const allContacts = await listContacts();
   const index = allContacts.findIndex(({ id }) => id === String(contactId));
-  if (index === -1) return;
+  if (index === -1) return null;
   const [result] = allContacts.splice(index, 1);
   await updateContactsStorage(allContacts);
   return result;
