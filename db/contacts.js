@@ -23,7 +23,7 @@ export async function removeContact(contactId) {
   const index = allContacts.findIndex(({ id }) => id === String(contactId));
   if (index === -1) return;
   const [result] = allContacts.splice(index, 1);
-  updateContactsStorage(allContacts);
+  await updateContactsStorage(allContacts);
   return result;
 }
 
@@ -36,7 +36,7 @@ export async function addContact(name, email, phone) {
     phone,
   };
   allContacts.unshift(newContact);
-  updateContactsStorage(allContacts);
+  await updateContactsStorage(allContacts);
   return newContact;
 }
 
@@ -50,6 +50,6 @@ export async function updateContactBtId(id, name, email, phone) {
     email,
     phone,
   };
-  updateContactsStorage(allContacts);
+  await updateContactsStorage(allContacts);
   return allContacts[contactIndex];
 }
