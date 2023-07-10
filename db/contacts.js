@@ -20,9 +20,11 @@ export async function getContactById(contactId) {
 
 export async function removeContact(contactId) {
   const allContacts = await listContacts();
-
-  return allContacts;
-  // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
+  const index = allContacts.findIndex(({ id }) => id === String(contactId));
+  if (index === -1) return;
+  const [result] = allContacts.splice(index, 1);
+  updateContactsStorage(allContacts);
+  return result;
 }
 
 export async function addContact(name, email, phone) {
@@ -33,11 +35,9 @@ export async function addContact(name, email, phone) {
     email,
     phone,
   };
-
   allContacts.unshift(newContact);
   updateContactsStorage(allContacts);
   return newContact;
-  // ...твій код. Повертає об'єкт доданого контакту.
 }
 
 export async function updateContactBtId(id, name, email, phone) {
@@ -50,7 +50,6 @@ export async function updateContactBtId(id, name, email, phone) {
     email,
     phone,
   };
-
   updateContactsStorage(allContacts);
   return allContacts[contactIndex];
 }

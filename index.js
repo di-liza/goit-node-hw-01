@@ -33,6 +33,9 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
     case "add":
       const result = await addContact(name, email, phone);
       return console.log("result", result);
+    case "remove":
+      const remove = await removeContact(id);
+      return console.log("remove", remove);
     case "update":
       const update = await updateContactBtId(id, name, email, phone);
       return console.log("update", update);
@@ -56,3 +59,5 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 //   email: "kattt@lumus.net",
 //   phone: "(548) 223-7854",
 // });
+
+invokeAction({ action: "remove", id: "AeHIrLTr6JkxGE6SN-0Rw" });
