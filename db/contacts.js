@@ -3,8 +3,6 @@ import { nanoid } from "nanoid";
 import path from "path";
 const contactsPath = path.join("db", "contacts.json");
 
-// TODO: задокументувати кожну функцію
-
 const updateContactsStorage = async (contacts) => {
   fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 };
