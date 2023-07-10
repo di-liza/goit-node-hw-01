@@ -4,6 +4,10 @@ import path from "path";
 const contactsPath = path.join("db", "contacts.json");
 
 // TODO: задокументувати кожну функцію
+
+const updateContactsStorage = async (contacts) => {
+  fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+};
 export async function listContacts() {
   const contacts = await fs.readFile(contactsPath);
   return JSON.parse(contacts);
@@ -31,7 +35,7 @@ export async function addContact(name, email, phone) {
   };
 
   allContacts.unshift(newContact);
-  fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
+  updateContactsStorage(allContacts);
   return newContact;
   // ...твій код. Повертає об'єкт доданого контакту.
 }
@@ -47,6 +51,6 @@ export async function updateContactBtId(id, name, email, phone) {
     phone,
   };
 
-  fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 2));
+  updateContactsStorage(allContacts);
   return allContacts[contactIndex];
 }
