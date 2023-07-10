@@ -29,11 +29,13 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
 
     case "get":
       const getbyId = await getContactById(id);
-      return console.log("getbyId", getbyId);
+      return console.log("getbyId:", getbyId);
       // ... id
       break;
 
     case "add":
+      const result = await addContact(name, email, phone);
+      return console.log("result:", result);
       // ... name email phone
       break;
 
@@ -46,4 +48,10 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssH" });
+invokeAction({ action: "get", id: "c3ShLf1KpVs8raQyO-dAI" });
+// invokeAction({
+//   action: "add",
+//   name: "Kattie",
+//   email: "kattt@lumus.net",
+//   phone: "(548) 223-7854",
+// });
