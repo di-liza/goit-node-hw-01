@@ -29,8 +29,8 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       const getbyId = await getContactById(id);
       return console.log(getbyId);
     case "add":
-      const result = await addContact(name, email, phone);
-      return console.log("result", result);
+      const add = await addContact(name, email, phone);
+      return console.log(add);
     case "remove":
       const remove = await removeContact(id);
       return console.log(remove);
