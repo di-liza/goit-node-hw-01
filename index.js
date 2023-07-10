@@ -7,6 +7,7 @@ import {
   getContactById,
   listContacts,
   removeContact,
+  updateContactBtId,
 } from "./db/contacts.js    ";
 
 // program
@@ -26,31 +27,31 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
     case "list":
       const allContacts = await listContacts();
       return console.log("allContacts", allContacts);
-
     case "get":
       const getbyId = await getContactById(id);
-      return console.log("getbyId:", getbyId);
-      // ... id
-      break;
-
+      return console.log("id", id);
     case "add":
       const result = await addContact(name, email, phone);
-      return console.log("result:", result);
-      // ... name email phone
-      break;
-
-    case "remove":
-      // ... id
-      break;
-
+      return console.log("result", result);
+    case "update":
+      const update = await updateContactBtId(id, name, email, phone);
+      return console.log("update", update);
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
 };
 
-invokeAction({ action: "get", id: "c3ShLf1KpVs8raQyO-dAI" });
+// invokeAction({ action: "get", id: "qdggE76Jtbfd9eWH" });
 // invokeAction({
 //   action: "add",
+//   name: "Kattie",
+//   email: "kattt@lumus.net",
+//   phone: "(548) 223-7854",
+// });
+
+// invokeAction({
+//   action: "update",
+//   id: "AeHIrLTr6JkxGE6SN-0Rw",
 //   name: "Kattie",
 //   email: "kattt@lumus.net",
 //   phone: "(548) 223-7854",
