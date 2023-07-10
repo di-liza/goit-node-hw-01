@@ -9,11 +9,6 @@ import {
   removeContact,
 } from "./db/contacts.js    ";
 
-listContacts();
-getContactById();
-removeContact();
-addContact();
-
 // program
 //   .option("-a, --action <type>", "choose action")
 //   .option("-i, --id <type>", "user id")
@@ -33,6 +28,8 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       return console.log("allContacts", allContacts);
 
     case "get":
+      const getbyId = await getContactById(id);
+      return console.log("getbyId", getbyId);
       // ... id
       break;
 
@@ -49,4 +46,4 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-invokeAction({ action: "list" });
+invokeAction({ action: "get", id: "qdggE76Jtbfd9eWJHrssH" });
